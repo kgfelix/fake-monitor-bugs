@@ -2,7 +2,7 @@ package com.felixlabs.fboxapi.model;
 
 import java.util.List;
 
-public class MonitorBugs {
+public class Bugs {
 	
 	private List<Bug> bugs;
 

@@ -1,9 +1,15 @@
 package com.felixlabs.fboxapi.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -24,6 +30,9 @@ public class Bug {
 	private String priority;
 	private String severity;
 	private String sistemaCorrecao;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bug", cascade = CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 	public Integer get_id() {
 		return _id;
@@ -110,6 +119,14 @@ public class Bug {
 	
 	public void setSistemaCorrecao(String sistemaCorrecao) {
 		this.sistemaCorrecao = sistemaCorrecao;
+	}
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override
